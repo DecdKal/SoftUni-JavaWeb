@@ -1,0 +1,53 @@
+/* src/components/BlogPostPage.css */
+form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin: 0 auto;
+  }
+  
+  div {
+    margin-bottom: 10px;
+  }
+  
+  label {
+    margin-bottom: 5px;
+  }
+  
+  input,
+  textarea {
+    padding: 5px;
+    font-size: 16px;
+    width: 100%;
+  }
+  
+  button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  
+  .tag {
+    background-color: #e0e0e0;
+    border-radius: 3px;
+    padding: 5px;
+  }
+  
+  .tag button {
+    background: none;
+    border: none;
+    margin-left: 5px;
+    cursor: pointer;
+  }
