@@ -5,6 +5,7 @@ import softuni.web.project.user.UserEntity;
 import softuni.web.project.user.dto.UserRegistrationDTO;
 import softuni.web.project.user.repository.UserRepository;
 import softuni.web.project.user.roles.UserRoleEntity;
+import softuni.web.project.user.roles.UserRoleEnum;
 import softuni.web.project.user.roles.repository.RoleRepository;
 
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ public class UserServiceImpl implements UserService {
     }
 
     private UserEntity map(UserRegistrationDTO userRegistrationDTO) {
-        UserRoleEntity role =  roleRepository.findByName("USER");
+        UserRoleEntity role =  roleRepository.findByName(UserRoleEnum.USER);
         List<UserRoleEntity> roles = new ArrayList<>();
         roles.add(role);
 
