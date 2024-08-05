@@ -2,10 +2,15 @@ package softuni.web.project.user;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.annotations.UuidGenerator;
 import softuni.web.project.comment.CommentEntity;
 import softuni.web.project.user.roles.UserRoleEntity;
 
 import java.util.List;
+import java.util.UUID;
+
+import static org.hibernate.type.SqlTypes.VARCHAR;
 
 
 @Entity
@@ -18,6 +23,12 @@ public class UserEntity {
 
     @Column(unique = true)
     private String username;
+
+    @UuidGenerator
+    //@UUIDSequence <-- applicable for all kind of identifiers
+    @JdbcTypeCode(VARCHAR)
+    private UUID uuid;
+
 
     @Column(unique = true)
     @Email
@@ -105,4 +116,12 @@ public class UserEntity {
         return this;
     }
 
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public UserEntity setUuid(UUID uuid) {
+        this.uuid = uuid;
+        return this;
+    }
 }

@@ -1,6 +1,9 @@
 package softuni.web.project.user.service;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import softuni.web.project.user.PUserDetails;
 import softuni.web.project.user.UserEntity;
 import softuni.web.project.user.dto.UserRegistrationDTO;
 import softuni.web.project.user.repository.UserRepository;
@@ -10,6 +13,7 @@ import softuni.web.project.user.roles.repository.RoleRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -33,6 +37,15 @@ public class UserServiceImpl implements UserService {
         }
 
         return userRepository.save(map(userRegistrationDTO));
+    }
+
+    @Override
+    public Optional<PUserDetails> getCurrentUser() {
+        Authentication authentication =  SecurityContextHolder.getContext().getAuthentication();
+        if(authentication != null && authentication.getPrincipal() instanceof PUserDetails pUserDetails) {
+            return Optional.of(pUserDetails);
+        }
+        return null;
     }
 
     private UserEntity map(UserRegistrationDTO userRegistrationDTO) {
